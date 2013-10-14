@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Yopoll</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<header>
+  <div class="logo">YoPoll</div>
+  <nav>
+    <ul>
+      <li><a href="#">Polls</a></li>
+      <li><a href="#">Teams</a></li>
+      <li><a href="#">Sign In</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="main">
+<%= yield %>
+</section>
+
+</body>
+</html>

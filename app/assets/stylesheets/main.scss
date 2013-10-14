@@ -1,0 +1,38 @@
+@import 'reset.scss';
+@import 'colors.scss';
+
+body {
+  font-family: 'Myriad Pro';
+  color: $gray;
+}
+header {
+  padding: 10px;
+  color: white;
+  background: $yodleBlue;
+  .logo {
+    height: 24px;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  nav {
+    float: right;
+    margin-top: -19px;
+
+    font-size: 14px;
+    font-weight: bold;
+  }
+  li {
+    display: inline-block;
+    padding: 0 10px;
+    a, a:visited, a:hover {
+      color: white;
+      text-decoration: none;
+    }
+    a:hover {
+      color: $lightBlue;
+    }
+  }
+}
+#main {
+  padding: 10px;
+}
