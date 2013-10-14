@@ -1,0 +1,14 @@
+form {
+  display: block;
+  width: 100%;
+  .field {
+    padding: 8px 0;
+  }
+}
+label {
+  display: inline-block;
+  width: 20%;
+  padding-right: 10px;
+
+  font-size: 16px;
+}

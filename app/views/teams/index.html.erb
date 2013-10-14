@@ -1,0 +1,8 @@
+<h1 class="index_header">All Teams <%= link_to "New Team", new_team_path, class: "new_item" %></h1>
+<ul class="poll_list">
+  <% @teams.each do |t| %>
+  <li>
+    <span class="poll_date"><%= link_to t.name, t %></span>
+  </li>
+  <% end %>
+</ul>

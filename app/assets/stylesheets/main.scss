@@ -1,6 +1,10 @@
 @import 'reset.scss';
 @import 'colors.scss';
+@import 'form.scss';
 
+* {
+  box-sizing: border-box;
+}
 body {
   font-family: 'Myriad Pro';
   color: $gray;
@@ -34,5 +38,56 @@ header {
   }
 }
 #main {
-  padding: 10px;
+  width: 600px;
+  margin: auto;
+  padding-top: 20px;
+}
+
+.index_header {
+  margin-bottom: 10px;
+  .new_item {
+    float: right;
+
+    padding-top: 5px;
+
+    font-size: 0.75em;
+    color: $lightBlue;
+    text-decoration: none;
+  }
+}
+
+.poll_list {
+  li {
+    display: block;
+    width: 100%;
+
+    padding: 10px;
+
+    background: #e0e0e0;
+
+    border-bottom: 10px solid white;
+  }
+  .poll_date {
+    font-size: 18px;
+    font-weight: bold; 
+  }
+  .poll_active_status {
+    float: right;
+    padding-top: 4px;
+
+    font-weight: 600;
+  }
+  .active {
+    padding: 5px;
+
+    line-height: 12px;
+    color: $green;
+    background: white;
+
+    border-radius: 5px;
+  }
+  a, a:visited, a:hover {
+    text-decoration: none;
+    color: $gray;
+  }
 }
