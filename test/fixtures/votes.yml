@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  demo_id: 
+  from: MyString
+  raw: MyText
+  score: 
+
+two:
+  demo_id: 
+  from: MyString
+  raw: MyText
+  score: 

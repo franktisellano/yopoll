@@ -1,2 +1,17 @@
 <h1><%= @poll.date.strftime("%B %d, %Y") %></h1>
-<p>List of all the teams here.</p>
+
+<strong>Demos</strong>
+<ul>
+  <% @poll.demos.each do |d| %>
+  <li>
+    <%= Team.find(d.team_id).name %>
+    <% d.votes.each do |v| %>
+    <ul>
+      <li><%= v.from %></li>
+      <li><%= v.raw %></li>
+      <li><%= v.score %></li>
+    </ul>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
