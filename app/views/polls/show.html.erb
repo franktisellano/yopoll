@@ -1,4 +1,7 @@
-<h1><%= @poll.date.strftime("%B %d, %Y") %></h1>
+<h1>
+  <%= @poll.date.strftime("%B %d, %Y") %>
+  (<% if @poll.active %>Active<% else %>Inactive<% end %>)
+</h1>
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
