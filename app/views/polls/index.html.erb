@@ -1,13 +1,13 @@
 <h1 class="index_header">All Polls <%= link_to "New Poll", new_poll_path, class: "new_item" %></h1>
-<ul class="poll_list">
+<ul class="item_list">
   <% @polls.each do |p| %>
   <li>
     <span class="poll_date"><%= link_to p.date.strftime("%B %d, %Y"), p %></span>
     <span class="poll_phone_number"><%= p.phone_number %></span>
     <% if p.active %>
-      <span class="poll_active_status active" data-poll-id="<%= p.id %>">Active</span>
+      <span class="active_status active" data-item-id="<%= p.id %>" data-item-type="poll">Active</span>
     <% else %>
-      <span class="poll_active_status inactive" data-poll-id="<%= p.id %>"><a href="#" class="activate">Activate</a></span>
+      <span class="active_status inactive" data-item-id="<%= p.id %>" data-item-type="poll"><a href="#" class="activate">Activate</a></span>
     <% end %>
   </li>
   <% end %>

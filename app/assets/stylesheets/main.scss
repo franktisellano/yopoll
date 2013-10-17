@@ -56,7 +56,13 @@ header {
   }
 }
 
-.poll_list {
+.item_list {
+  &.small li {
+    padding: 8px;
+    .poll_date {
+      font-size: 14px;
+    }
+  }
   li {
     display: block;
     width: 100%;
@@ -71,7 +77,7 @@ header {
     font-size: 18px;
     font-weight: bold; 
   }
-  .poll_active_status {
+  .active_status {
     float: right;
     padding-top: 4px;
 

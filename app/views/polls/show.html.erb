@@ -1,16 +1,53 @@
 <h1><%= @poll.date.strftime("%B %d, %Y") %></h1>
 
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Team', 'Low', 'Solid', 'Extreme'],
+          <% @poll.demos.each do |d| %>
+          ['<%= Team.find(d.team_id).name %>', <%= d.votes.where(score: 1).count %>, <%= d.votes.where(score: 2).count %>, <%= d.votes.where(score: 3).count %>],
+          <% end %>
+        ]);
+
+          var options = {
+          // backgroundColor: 'transparent',
+          // colors: ['#00466c','#9AB1C6','#E0E5ED','#FFFF42','#DEF3BD','#00A5C6','#DEBDDE','#000000'], 
+          // lineWidth: '3',
+          //   pointSize: 7,
+          // legend: {position: 'none'},
+          // chartArea: {width: '90%', height: '80%'},
+          // hAxis: {
+          //   gridlines: {color: 'none'}, 
+          //   baselineColor: '#E2E2E2',
+
+          // },
+          // vAxis: {
+          //   minValue: 0,
+          //   gridlines: {color: '#E2E2E2', count: 4},
+          //   baselineColor: '#E2E2E2',
+          //   maxValue: 5
+          // }
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+
+<div id="chart_div"></div>
+
 <strong>Demos</strong>
-<ul>
+<ul class="item_list">
   <% @poll.demos.each do |d| %>
   <li>
-    <%= Team.find(d.team_id).name %>
-    <% d.votes.each do |v| %>
-    <ul>
-      <li><%= v.from %></li>
-      <li><%= v.raw %></li>
-      <li><%= v.score %></li>
-    </ul>
+    <span class="poll_date"><%= Team.find(d.team_id).name %></span>
+    <% if d.active %>
+      <span class="active_status active" data-item-id="<%= d.id %>" data-item-type="demo">Active</span>
+    <% else %>
+      <span class="active_status inactive" data-item-id="<%= d.id %>" data-item-type="demo"><a href="#" class="activate">Activate</a></span>
     <% end %>
   </li>
   <% end %>

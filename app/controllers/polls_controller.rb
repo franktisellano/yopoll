@@ -9,6 +9,7 @@ class PollsController < ApplicationController
 
   def new
     @poll = Poll.new
+    @teams = Team.all.order('name ASC')
   end
 
   def create
@@ -21,6 +22,11 @@ class PollsController < ApplicationController
     end
 
     if @poll.save
+      ActiveRecord::Base.transaction do
+        params['team'].each do |k, t|
+          Demo.create(:poll_id => @poll.id, :team_id => k)
+        end
+      end
       redirect_to polls_path, notice: 'Poll was successfully created.'
     else
       render action: 'new'

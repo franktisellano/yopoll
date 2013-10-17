@@ -23,6 +23,18 @@
     <%= f.label :phone_number %>
     <%= f.text_field :phone_number, value: "+16467620489" %>
   </div>
+
+  <hr />
+  <h1 class="index_header">Select Teams</h1>
+  <ul class="item_list small">
+    <% @teams.each do |t| %>
+    <li>
+      <input type="checkbox" class="poll_check" name="team[<%= t.id %>]" checked />
+      <span class="poll_date"><%= link_to t.name, t %></span>
+    </li>
+    <% end %>
+  </ul>
+
   <div class="actions">
     <%= f.submit %>
   </div>
