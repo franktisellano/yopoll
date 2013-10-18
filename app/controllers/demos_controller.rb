@@ -9,6 +9,7 @@ class DemosController < ApplicationController
 
     if @demo.save
       flash[:success] = "The poll has been activated."
+
     else
       flash[:success] = "There was an error."
     end

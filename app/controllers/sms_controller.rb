@@ -25,7 +25,11 @@ class SmsController < ApplicationController
           :from => to_number,
           :to => from_number,
           :body => "Success! You gave a score of #{score}."
-        )
+        )      
+
+        Pusher['test_channel'].trigger('my_event', data: {
+          update: true
+        })
 
         render :nothing => true, :status => 200, :content_type => 'text/html'
       end

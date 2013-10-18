@@ -7,6 +7,18 @@ class PollsController < ApplicationController
     set_poll
   end
 
+  def new_poll_data
+    set_poll
+    @data = [['Team', 'Low', 'Solid', 'Extreme']]
+    @poll.demos.each do |d|
+      @data.push [Team.find(d.team_id).name, d.votes.where(score: 1).count, d.votes.where(score: 2).count, d.votes.where(score: 3).count]
+    end
+
+    logger.debug @data.to_json
+
+    render json: @data
+  end
+
   def new
     @poll = Poll.new
     @teams = Team.all.order('name ASC')

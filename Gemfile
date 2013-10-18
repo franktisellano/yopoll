@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'twilio-ruby'
 
 # Pusher
-
+gem 'pusher'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
