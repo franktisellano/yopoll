@@ -3,8 +3,6 @@ Yopoll::Application.routes.draw do
   post 'sms/receive'
   get 'sms/send'
 
-  get '/polls/data/:id' => 'polls#new_poll_data'
-
   resources :polls
   resources :teams
   resources :demos

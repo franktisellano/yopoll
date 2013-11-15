@@ -5,7 +5,9 @@ $(document).ready(function() {
     var itemType = $(this).parents('.active_status').attr('data-item-type');
     var $parent = $(this).parents('.active_status');
 
-    console.log('/' + itemType + 's/' + itemId)
+    console.log(Date.now())
+
+    console.log('PUT /' + itemType + 's/' + itemId)
 
     $.ajax({
       type: 'PUT',

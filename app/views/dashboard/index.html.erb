@@ -1,2 +1,77 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<script type="text/javascript">
+
+  var pusher = new Pusher('dbd07205176161ade138');
+  var channel = pusher.subscribe('dashboard_channel');
+
+  channel.bind('add_score', function(data) {
+    console.log(data)
+
+    var score = data.data.score;
+    var row = $('*[data-team-id="' + data.data.team_id + '"]');
+    var low_col = row.children('.low');
+    var solid_col = row.children('.solid');
+    var extreme_col = row.children('.extreme');
+
+    if (score == 1) {
+      var current_low = low_col.text();
+      var new_low = parseInt(current_low) + 1;
+
+      low_col.html(new_low);
+    }
+
+    if (score == 2) {
+      var current_solid = solid_col.text();
+      var new_solid = parseInt(current_solid) + 1;
+
+      solid_col.html(new_solid);
+    }
+
+    if (score == 3) {
+      var current_extreme = extreme_col.text();
+      var new_extreme = parseInt(current_extreme) + 1;
+
+      extreme_col.html(new_extreme);
+    }
+
+    var new_total = (parseInt(low_col.text()) + (parseInt(solid_col.text()) * 2) + (parseInt(extreme_col.text()) * 3)) / (parseInt(low_col.text()) + parseInt(solid_col.text()) + parseInt(extreme_col.text()));
+
+    row.children('.total').html(new_total.toFixed(3));
+
+  });
+
+  channel.bind('change_active', function(data) {
+    $('.active_item').toggleClass('active_item');
+    $('*[data-team-id="' + data.data.new_active_team_id + '"]').toggleClass('active_item');
+  });
+</script>
+
+<table class="dashboard_list">
+  <thead>
+    <tr>
+      <td>Team Name</td>
+      <td>Extreme</td>
+      <td>Solid</td>
+      <td>Low</td>
+      <td>Total</td>
+    </tr>
+  </thead>
+  <tbody>
+  <%
+
+    @poll.demos.each do |d| 
+      @extreme_count = d.votes.where(score: 3).count
+      @solid_count = d.votes.where(score: 2).count
+      @low_count = d.votes.where(score: 1).count
+
+      @total = d.votes.count > 0 ? ((@extreme_count * 3).to_f + (@solid_count * 2) + @low_count) / (@extreme_count + @solid_count + @low_count) : 0
+  %>
+  <tr<% if d.active %> class="active_item"<% end %> data-team-id="<%= d.team_id %>">
+    <td><%= Team.find(d.team_id).name %></td>
+    <td class="extreme"><%= @extreme_count %></td>
+    <td class="solid"><%= @solid_count %></td>
+    <td class="low"><%= @low_count %></td>
+    <td class="total"><%= @total.round(3) %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

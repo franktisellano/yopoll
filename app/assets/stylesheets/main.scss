@@ -55,6 +55,9 @@ header {
     text-decoration: none;
   }
 }
+.dashboard_header {
+  margin-bottom: 10px;
+}
 
 .item_list {
   &.small li {
@@ -72,6 +75,10 @@ header {
     background: #e0e0e0;
 
     border-bottom: 10px solid white;
+    &.active_item {
+      background: $yodleBlue;
+      color: white;
+    }
   }
   .poll_date {
     font-size: 18px;
@@ -95,5 +102,28 @@ header {
   a, a:visited, a:hover {
     text-decoration: none;
     color: $gray;
+  }
+}
+
+.dashboard_list {
+  width: 100%;
+  font-size: 24px;
+  font-weight: bold;
+  thead {
+    font-size: 22px;
+    color: $lightBlue;
+    td {
+      padding-bottom: 10px;
+    }
+  }
+  tr {
+    border-bottom: 1px solid #e0e0e0;
+  }
+  td {
+    padding: 14px 10px 10px;
+  }
+  .active_item {
+    color: white;
+    background: $yodleBlue;
   }
 }

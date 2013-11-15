@@ -5,27 +5,10 @@
 
     <script type="text/javascript">
 
-
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-
-        var ajax = $.ajax({
-          url: '/polls/data/' + <%= @poll.id %>,
-          dataType: 'json'
-        }).done(function(a) {
-          var chart_data = google.visualization.arrayToDataTable(a);
-          var options = {};
-          chart.draw(chart_data, options);
-        });
-      }
-
       var pusher = new Pusher('dbd07205176161ade138');
       var channel = pusher.subscribe('test_channel');
 
       channel.bind('my_event', function(data) {
-        drawChart();
       });
     </script>
 

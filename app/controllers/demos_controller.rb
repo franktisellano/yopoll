@@ -10,11 +10,13 @@ class DemosController < ApplicationController
     if @demo.save
       flash[:success] = "The poll has been activated."
 
+      Pusher['dashboard_channel'].trigger('change_active', data: {
+        'new_active_team_id'=> @demo.id
+      })
+
     else
       flash[:success] = "There was an error."
     end
-
-    redirect_to Poll.find(@demo.poll_id)
   end
 
   private
