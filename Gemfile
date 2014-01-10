@@ -33,6 +33,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :production do
+  gem 'rails_serve_static_assets'
+end
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

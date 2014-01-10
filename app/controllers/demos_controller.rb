@@ -11,7 +11,7 @@ class DemosController < ApplicationController
       flash[:success] = "The poll has been activated."
 
       Pusher['dashboard_channel'].trigger('change_active', data: {
-        'new_active_team_id'=> @demo.id
+        'new_active_team_id'=> @demo.team_id
       })
 
     else

@@ -16,9 +16,9 @@
 
 <strong>Demos</strong>
 <ul class="item_list">
-  <% @poll.demos.each do |d| %>
+  <% @poll.demos.order("id ASC").each do |d| %>
   <li>
-    <span class="poll_date"><%= Team.find(d.team_id).name %></span>
+    <span class="poll_date"><%= d.team_id %> - <%= Team.find(d.team_id).name %></span>
     <% if d.active %>
       <span class="active_status active" data-item-id="<%= d.id %>" data-item-type="demo">Active</span>
     <% else %>
