@@ -1,8 +1,8 @@
 class SmsController < ApplicationController
 
   # Twilio constants – should be moved to config
-  # ACCOUNT_SID = 'ACd619abfb51473fa45265088dbf7cbf7d'
-  # ACCOUNT_TOKEN = 'a5225b03b9cfee05ffcf539bf58c6492'
+  ACCOUNT_SID = 'ACd619abfb51473fa45265088dbf7cbf7d'
+  ACCOUNT_TOKEN = 'a5225b03b9cfee05ffcf539bf58c6492'
 
   def receive
 
