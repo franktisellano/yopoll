@@ -11,7 +11,7 @@ class SmsController < ApplicationController
     from_number = params["From"]
     to_number = params["To"]
 
-    # @twilio_client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
+    @twilio_client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
 
     @active_poll = Poll.where("phone_number = ? AND active = ?", to_number, true).first
     @active_demo = Demo.where("active = ? AND poll_id = ?", true, @active_poll.id).first
