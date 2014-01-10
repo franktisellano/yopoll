@@ -1,8 +1,8 @@
 class SmsController < ApplicationController
 
   # Twilio constants – should be moved to config
-  ACCOUNT_SID = 'ACd619abfb51473fa45265088dbf7cbf7d'
-  ACCOUNT_TOKEN = 'a5225b03b9cfee05ffcf539bf58c6492'
+  # ACCOUNT_SID = 'ACd619abfb51473fa45265088dbf7cbf7d'
+  # ACCOUNT_TOKEN = 'a5225b03b9cfee05ffcf539bf58c6492'
 
   def receive
 
@@ -11,7 +11,7 @@ class SmsController < ApplicationController
     from_number = params["From"]
     to_number = params["To"]
 
-    @twilio_client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
+    # @twilio_client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
 
     @active_poll = Poll.where("phone_number = ? AND active = ?", to_number, true).first
     @active_demo = Demo.where("active = ? AND poll_id = ?", true, @active_poll.id).first
@@ -20,11 +20,12 @@ class SmsController < ApplicationController
       @vote = Vote.new(demo_id: @active_demo.id, from: from_number, raw: message_body, score: score)
       if @vote.save
 
-        @twilio_client.account.sms.messages.create(
-          :from => to_number,
-          :to => from_number,
-          :body => "Success! You gave a score of #{score}."
-        )      
+        # Let's save money on twilio.
+        # @twilio_client.account.sms.messages.create(
+        #   :from => to_number,
+        #   :to => from_number,
+        #   :body => "Success! You gave a score of #{score}."
+        # )      
 
         Pusher['dashboard_channel'].trigger('add_score', data: {
           'score' => score,
